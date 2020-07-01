@@ -11,7 +11,7 @@ const Sequelize = require("sequelize");
 //max: dbConfig.pool.max,
 //min: dbConfig.pool.min,
 //acquire: dbConfig.pool.acquire,
-c; //idle: dbConfig.pool.idle,
+//idle: dbConfig.pool.idle,
 //},
 //});
 
