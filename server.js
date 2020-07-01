@@ -60,22 +60,9 @@ function initial() {
   });
 }
 
-function run() {
-  User.create({
-    username: "Joon Kim",
-    email: "joonkim0625@gmail.com",
-    password: "$2b$10$lgrYkR577L0kGXBGiz4ufeQHhFr1ZjxbgN1VGQ6Q0ezGtuY9CuYUy",
-  }).then((user) => {
-    //  user role = 1
-    user.setRoles([3]).then(() => {});
-  });
-}
-
 // sync
-db.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and resync the DB");
+db.sequelize.sync().then(() => {
   initial();
-  run();
 });
 
 //db.sequelize.sync();
