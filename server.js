@@ -22,6 +22,20 @@ app.use(bodyParser.json());
 // parsing requests of content-tpye that is application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", corsOption);
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE");
+  res.header("Access-Control-Allow-Credentials", true);
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
+  next();
+});
+
 // route
 app.get("/", (req, res) => {
   res.json({
@@ -80,7 +94,7 @@ require("./app/routes/uploadRouter")(app);
 //});
 
 // creating a server
-const server = app.listen(process.env.PORT || 3000, function () {
+const server = app.listen(process.env.PORT || 8081, function () {
   const host = server.address().address;
   const port = server.address().port;
 
