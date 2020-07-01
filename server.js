@@ -8,7 +8,7 @@ const User = db.user;
 const app = express();
 
 var corsOption = {
-  origin: "http://localhost:8081",
+  origin: "https://joonkim.herokuapp.com",
 };
 
 // middleware
@@ -74,7 +74,15 @@ require("./app/routes/commentRoutes")(app);
 require("./app/routes/uploadRouter")(app);
 
 // setting port
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+//const PORT = process.env.PORT || 8080;
+//app.listen(PORT, () => {
+//console.log(`Server is running on port ${PORT}`);
+//});
+
+// creating a server
+const server = app.listen(process.env.PORT || 5000, function () {
+  const host = server.address().address;
+  const port = server.address().port;
+
+  console.log("App listening at http://%s:$s", host, port);
 });
