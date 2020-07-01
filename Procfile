@@ -1,1 +1,3 @@
-web: node app.js
+// Procfile
+web: node server.js
+
