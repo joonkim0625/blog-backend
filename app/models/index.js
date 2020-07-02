@@ -25,14 +25,14 @@ const sequelize = new Sequelize(
   process.env.DB_PROD_PASSWORD,
   {
     host: process.env.DB_PROD_HOST,
-    dialect: "postgres",
+    dialect: process.env.DIALECT,
     operatorsAliases: false,
 
     pool: {
-      max: process.env.MAX,
-      min: process.env.MIN,
-      acquire: process.env.ACQUIRE,
-      idle: process.env.IDLE,
+      max: +process.env.MAX,
+      min: +process.env.MIN,
+      acquire: +process.env.ACQUIRE,
+      idle: +process.env.IDLE,
     },
   }
 );
