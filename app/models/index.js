@@ -25,7 +25,7 @@ const sequelize = new Sequelize(
   process.env.DB_PROD_PASSWORD,
   {
     host: process.env.DB_PROD_HOST,
-    dialect: process.env.DIALECT,
+    dialect: "postgres",
     operatorsAliases: false,
 
     pool: {
