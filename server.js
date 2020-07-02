@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const db = require("./app/models");
 const Role = db.role;
-const User = db.user;
+//const User = db.user;
 
 const app = express();
 
@@ -13,7 +13,7 @@ var corsOption = {
 };
 
 // middleware
-app.use(cors(corsOption.origin)); // you could possibly comment this line out
+app.use(cors("https://joonkim.herokuapp.com")); // you could possibly comment this line out
 
 global.__basedir = __dirname;
 
@@ -63,15 +63,15 @@ require("./app/routes/commentRoutes")(app);
 require("./app/routes/uploadRouter")(app);
 
 //setting port
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+//const PORT = process.env.PORT || 8080;
+//app.listen(PORT, () => {
+//console.log(`Server is running on port ${PORT}`);
+//});
 
 //creating a server
-//const server = app.listen(process.env.PORT || 8080, function () {
-//const host = server.address().address;
-//const port = server.address().port;
+const server = app.listen(process.env.PORT || 8080, function () {
+  const host = server.address().address;
+  const port = server.address().port;
 
-//console.log("App listening at http://%s:%s", host, port);
-//});
+  console.log("App listening at http://%s:%s", host, port);
+});
