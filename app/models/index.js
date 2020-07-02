@@ -20,14 +20,13 @@ const Sequelize = require("sequelize");
 //);
 
 const sequelize = new Sequelize(
-  process.env.DB_PROD_DATABASE,
-  process.env.DB_PROD_USER,
-  process.env.DB_PROD_PASSWORD,
+  "deufl768fb3i3u",
+  "wanekzmadaokri",
+  "08d510398645623b06e91307d0b3c924285caf2ff5b521aefd848ce69255f6d6",
   {
-    host: process.env.DB_PROD_HOST,
+    host: "ec2-35-172-73-125.compute-1.amazonaws.com",
     dialect: "postgres",
     operatorsAliases: false,
-
     pool: {
       max: 5,
       min: 0,
