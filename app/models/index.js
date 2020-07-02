@@ -1,32 +1,41 @@
-const dbConfig = require("../config/dbConfig");
-const env = require("../config/env");
+require("dotenv").config();
 
 const Sequelize = require("sequelize");
-//const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-//host: dbConfig.HOST,
-//dialect: dbConfig.dialect,
+const sequelize = new Sequelize(
+  process.env.DB_DEV_DATABASE,
+  process.env.DB_DEV_USER,
+  process.env.DB_DEV_PASSWORD,
+  {
+    host: process.env.DB_DEV_HOST,
+    dialect: process.env.DIALECT,
+    operatorsAliases: false,
+
+    pool: {
+      max: +process.env.MAX,
+      min: +process.env.MIN,
+      acquire: +process.env.ACQUIRE,
+      idle: +process.env.IDLE,
+    },
+  }
+);
+
+//const sequelize = new Sequelize(
+//process.env.DB_PROD_DATABASE,
+//process.env.DB_PROD_USER,
+//process.env.DB_PROD_PASSWORD,
+//{
+//host: process.env.DB_PROD_HOST,
+//dialect: process.env.DIALECT,
 //operatorsAliases: false,
 
 //pool: {
-//max: dbConfig.pool.max,
-//min: dbConfig.pool.min,
-//acquire: dbConfig.pool.acquire,
-//idle: dbConfig.pool.idle,
+//max: process.env.MAX,
+//min: process.env.MIN,
+//acquire: process.env.ACQUIRE,
+//idle: process.env.IDLE,
 //},
-//});
-
-const sequelize = new Sequelize(env.database, env.username, env.password, {
-  host: env.host,
-  dialect: env.dialect,
-  operatorsAliases: false,
-
-  pool: {
-    max: env.max,
-    min: env.pool.min,
-    acquire: env.pool.acquire,
-    idle: env.pool.idle,
-  },
-});
+//}
+//);
 
 const db = {};
 
