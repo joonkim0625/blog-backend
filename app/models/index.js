@@ -1,41 +1,41 @@
 require("dotenv").config();
 
 const Sequelize = require("sequelize");
-const sequelize = new Sequelize(
-  process.env.DB_DEV_DATABASE,
-  process.env.DB_DEV_USER,
-  process.env.DB_DEV_PASSWORD,
-  {
-    host: process.env.DB_DEV_HOST,
-    dialect: process.env.DIALECT,
-    operatorsAliases: false,
-
-    pool: {
-      max: +process.env.MAX,
-      min: +process.env.MIN,
-      acquire: +process.env.ACQUIRE,
-      idle: +process.env.IDLE,
-    },
-  }
-);
-
 //const sequelize = new Sequelize(
-//process.env.DB_PROD_DATABASE,
-//process.env.DB_PROD_USER,
-//process.env.DB_PROD_PASSWORD,
+//process.env.DB_DEV_DATABASE,
+//process.env.DB_DEV_USER,
+//process.env.DB_DEV_PASSWORD,
 //{
-//host: process.env.DB_PROD_HOST,
+//host: process.env.DB_DEV_HOST,
 //dialect: process.env.DIALECT,
 //operatorsAliases: false,
 
 //pool: {
-//max: process.env.MAX,
-//min: process.env.MIN,
-//acquire: process.env.ACQUIRE,
-//idle: process.env.IDLE,
+//max: +process.env.MAX,
+//min: +process.env.MIN,
+//acquire: +process.env.ACQUIRE,
+//idle: +process.env.IDLE,
 //},
 //}
 //);
+
+const sequelize = new Sequelize(
+  process.env.DB_PROD_DATABASE,
+  process.env.DB_PROD_USER,
+  process.env.DB_PROD_PASSWORD,
+  {
+    host: process.env.DB_PROD_HOST,
+    dialect: process.env.DIALECT,
+    operatorsAliases: false,
+
+    pool: {
+      max: process.env.MAX,
+      min: process.env.MIN,
+      acquire: process.env.ACQUIRE,
+      idle: process.env.IDLE,
+    },
+  }
+);
 
 const db = {};
 
