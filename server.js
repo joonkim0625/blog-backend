@@ -13,7 +13,7 @@ var corsOption = {
 };
 
 // middleware
-app.use(cors(corsOption)); // you could possibly comment this line out
+app.use(cors(corsOption.origin)); // you could possibly comment this line out
 
 global.__basedir = __dirname;
 
