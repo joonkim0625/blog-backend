@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config({ silent: process.env.NODE_ENV === "production" });
 
 const Sequelize = require("sequelize");
 //const sequelize = new Sequelize(
@@ -20,18 +20,18 @@ const Sequelize = require("sequelize");
 //);
 
 const sequelize = new Sequelize(
-  "deufl768fb3i3u",
-  "wanekzmadaokri",
-  "08d510398645623b06e91307d0b3c924285caf2ff5b521aefd848ce69255f6d6",
+  process.env.DATABASE,
+  process.env.USER,
+  process.env.PASSWORD,
   {
-    host: "ec2-35-172-73-125.compute-1.amazonaws.com",
+    host: process.env.HOST,
     dialect: "postgres",
     operatorsAliases: false,
     pool: {
-      max: 5,
-      min: 0,
-      acquire: 30000,
-      idle: 10000,
+      max: +process.env.MAX,
+      min: +process.env.MIN,
+      acquire: +process.env.ACQUIRE,
+      idle: +process.env.IDLE,
     },
   }
 );
