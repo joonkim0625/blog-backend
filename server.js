@@ -3,6 +3,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const db = require("./app/models");
 const Role = db.role;
+const alarm = require("./alarm");
+require("dotenv").config({ silent: process.env.NODE_ENV === "production" });
+
 //const User = db.user;
 
 const app = express();
@@ -47,13 +50,16 @@ function initial() {
 }
 
 // sync
-//db.sequelize.sync({ force: true }).then(() => {
-//initial();
-//});
 
-db.sequelize.sync().then(() => {
-  initial();
-});
+if (process.env.NODE_ENV === "production") {
+  db.sequelize.sync().then(() => {
+    initial();
+  });
+} else {
+  db.sequelize.sync({ force: true }).then(() => {
+    initial();
+  });
+}
 
 //routes
 require("./app/routes/postRoutes")(app);
@@ -72,6 +78,7 @@ require("./app/routes/uploadRouter")(app);
 const server = app.listen(process.env.PORT || 8080, function () {
   const host = server.address().address;
   const port = server.address().port;
+  alarm("https://joonkim.herokuapp.com");
 
   console.log("App listening at http://%s:%s", host, port);
 });
