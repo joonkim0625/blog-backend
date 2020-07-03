@@ -1,7 +1,7 @@
 // credit : https://hackernoon.com/how-to-prevent-your-free-heroku-dyno-from-sleeping-dggxo3bi2
 const fetch = require("node-fetch");
 
-const alarm = (url, interval = 25, callback) => {
+const alarm = (url, interval = 60, callback) => {
   const milliseconds = interval * 60000;
   setTimeout(() => {
     try {
