@@ -20,7 +20,7 @@ const alarm = (url, interval = 60, callback) => {
         callback ? console.log("Callback failed: ", e.message) : null;
       } finally {
         // do it all again
-        return wakeUpDyno(url, interval, callback);
+        return alarm(url, interval, callback);
       }
     }
   }, milliseconds);
